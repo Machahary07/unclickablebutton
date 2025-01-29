@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #ff95f1;
+}
+
+#no {
+    padding: 10px;
+    display: flex;
+    margin-right: auto;
+}
+
+#yesButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+  }

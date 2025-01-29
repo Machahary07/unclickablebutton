@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes/No Buttons</title>
+    <script>
+        function moveNoButton() {
+            const noButton = document.getElementById("no");
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            noButton.style.position = "absolute";
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+            noButton.innerText = "😝 No? Catch me if you can!";
+        }
+
+        function showLoveMessage() {
+            const messageContainer = document.getElementById("message-container");
+            messageContainer.innerHTML = ""; // Clear previous content
+            
+            const message = document.createElement("p");
+            message.innerText = "I love you too!😍😘";
+            message.classList.add("text-2xl", "text-red-500", "mt-4");
+            
+            const image = document.createElement("img");
+            image.src = "ily.jpg";
+            image.alt = "I love you image";
+            image.classList.add("mt-4", "mx-auto", "w-40", "h-auto");
+            
+            messageContainer.appendChild(message);
+            messageContainer.appendChild(image);
+            
+            document.body.classList.remove("bg-gray-100");
+            document.body.classList.add("bg-pink-300");
+            
+            generateHearts();
+        }
+        
+        function generateHearts() {
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement("img");
+                heart.src = "red-heart-svgrepo-com.svg";
+                heart.classList.add("absolute", "w-12", "h-12", "animate-float");
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .animate-float {
+            animation: float 5s linear infinite;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100 relative overflow-hidden">
+    <div class="text-center bg-white p-6 rounded-lg shadow-lg">
+        <p class="text-xl mb-4">Do you love me?</p>
+        <button class="bg-green-500 text-white px-4 py-2 rounded-lg" onclick="showLoveMessage()">Yes</button>
+        <button id="no" class="bg-red-500 text-white px-4 py-2 rounded-lg" onmouseover="moveNoButton()">No</button>
+        <div id="message-container"></div>
+    </div>
+</body>
+</html>
